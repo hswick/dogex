@@ -20,6 +20,7 @@ end
 ```
 
 These variables are used to generate the RPC url. Make sure you have them set in `~/.dogecoin/dogecoin.conf`.
+Go [here](https://github.com/dogecoin/dogecoin/blob/master/contrib/debian/examples/dogecoin.conf) for a well documented example of the possible dogecoin config settings.
 
 Set the config:
 ```
