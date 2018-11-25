@@ -1,29 +1,29 @@
 defmodule Dogex do
-
   def send_request(method, params \\ []) do
-    result = HTTPoison.post(
-	  rpc_url(),
-	  Jason.encode!(
-	    %{
-	      jsonrpc: "1.0",
-	      method: method,
-	      params: params
-	    }
-	  )
-    )
+    result =
+      HTTPoison.post(
+        rpc_url(),
+        Jason.encode!(%{
+          jsonrpc: "1.0",
+          method: method,
+          params: params
+        })
+      )
 
     case result do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-	{:ok, Map.get(Jason.decode!(body), "result")}
+        {:ok, Map.get(Jason.decode!(body), "result")}
+
       {:ok, %HTTPoison.Response{status_code: 500, body: body}} ->
-	error = Map.get(Jason.decode!(body), "error")
-	{:error, Map.get(error, "message")}
+        error = Map.get(Jason.decode!(body), "error")
+        {:error, Map.get(error, "message")}
+
       {:ok, %HTTPoison.Response{status_code: 404}} ->
-	{:error, :not_found}
+        {:error, :not_found}
+
       {:error, %HTTPoison.Error{reason: reason}} ->
-	{:error, reason}
+        {:error, reason}
     end
-    
   end
 
   def rpc_url() do
@@ -87,5 +87,9 @@ defmodule Dogex do
 
   def decode_raw_transaction(raw_tx) do
     send_request("decoderawtransaction", [raw_tx])
+  end
+
+  def validate_address(address) do
+    send_request("validateaddress", [address])
   end
 end

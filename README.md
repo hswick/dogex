@@ -10,7 +10,7 @@ by adding `dogex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:dogex, "~> 0.1.0"}
+    {:dogex, "~> 0.1.1"}
   ]
 end
 
