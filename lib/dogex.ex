@@ -92,4 +92,5 @@ defmodule Dogex do
   def validate_address(address) do
     send_request("validateaddress", [address])
   end
+  
 end
