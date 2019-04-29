@@ -34,3 +34,23 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/dogex](https://hexdocs.pm/dogex).
 
+# Dogecoin
+
+## Install Dogecoin
+We can download the latest release of dogecoin [here](https://github.com/dogecoin/dogecoin/releases). This will have precompiled binaries that we can use.
+
+If you want to add the binaries to your path, it would look something like this in Linux:
+```bash
+echo 'export PATH=$PATH:$HOME/dogecoin-1.14.0/bin' >> ~/.bashrc
+```
+
+## Testing
+
+Start the local dogecoin regtest (regression test), like this:
+```
+dogecoind -regtest -daemon -conf="$HOME/projects/dogex/test.conf"
+```
+
+You must give the absolute path or else it will think you are in the .dogecoin directory.
+
+Now if you run `mix test` everything should work!
